@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Accounting Standards (Ind AS) - Hierarchical Chart</title>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        const ChevronDown = () => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        );
+
+        const ChevronRight = () => (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        );
+
+        const IndASChart = () => {
+            const [expandedCategories, setExpandedCategories] = useState({
+                transition: true,
+                income: true,
+                assets: true,
+                group: true,
+                financial: true,
+                presentation: true,
+                industry: true
+            });
+
+            const toggleCategory = (category) => {
+                setExpandedCategories(prev => ({
+                    ...prev,
+                    [category]: !prev[category]
+                }));
+            };
+
+            const categories = [
+                {
+                    id: 'transition',
+                    title: '1. Transition & Key Concepts',
+                    color: 'bg-blue-50 border-blue-300',
+                    headerColor: 'bg-blue-500',
+                    standards: [
+                        'Roadmap for convergence to Ind AS',
+                        'Ind AS 101 – First-time Adoption of Ind AS'
+                    ]
+                },
+                {
+                    id: 'income',
+                    title: '2. Income & Expense',
+                    color: 'bg-green-50 border-green-300',
+                    headerColor: 'bg-green-500',
+                    standards: [
+                        'Ind AS 115 – Revenue from Contracts with Customers',
+                        'Service Concession Arrangements',
+                        'Ind AS 20 – Government Grants',
+                        'Ind AS 19 – Employee Benefits',
+                        'Ind AS 102 – Share-based Payment',
+                        'Ind AS 12 – Income Taxes'
+                    ]
+                },
+                {
+                    id: 'assets',
+                    title: '3. Assets & Liabilities',
+                    color: 'bg-purple-50 border-purple-300',
+                    headerColor: 'bg-purple-500',
+                    standards: [
+                        'Ind AS 16 – Property, Plant and Equipment',
+                        'Ind AS 38 – Intangible Assets',
+                        'Ind AS 40 – Investment Property',
+                        'Ind AS 2 – Inventories',
+                        'Ind AS 23 – Borrowing Costs',
+                        'Ind AS 116 – Leases',
+                        'Ind AS 36 – Impairment of Assets',
+                        'Ind AS 37 – Provisions & Contingencies'
+                    ]
+                },
+                {
+                    id: 'group',
+                    title: '4. Group Accounts',
+                    color: 'bg-amber-50 border-amber-300',
+                    headerColor: 'bg-amber-500',
+                    standards: [
+                        'Ind AS 103 – Business Combinations',
+                        'Ind AS 110 – Consolidated Financial Statements',
+                        'Ind AS 111 – Joint Arrangements',
+                        'Ind AS 28 – Associates & Joint Ventures',
+                        'Ind AS 112 – Disclosure of Interests',
+                        'Ind AS 27 – Separate Financial Statements'
+                    ]
+                },
+                {
+                    id: 'financial',
+                    title: '5. Financial Instruments & Foreign Exchange',
+                    color: 'bg-red-50 border-red-300',
+                    headerColor: 'bg-red-500',
+                    standards: [
+                        'Ind AS 21 – Effects of Changes in Foreign Exchange Rates',
+                        'Ind AS 109 – Financial Instruments',
+                        'Ind AS 32 – Financial Instruments: Presentation',
+                        'Ind AS 107 – Financial Instruments: Disclosures',
+                        'Ind AS 113 – Fair Value Measurement'
+                    ]
+                },
+                {
+                    id: 'presentation',
+                    title: '6. Presentation & Disclosure',
+                    color: 'bg-indigo-50 border-indigo-300',
+                    headerColor: 'bg-indigo-500',
+                    standards: [
+                        'Ind AS 1 – Presentation of Financial Statements',
+                        'Ind AS 8 – Accounting Policies & Errors',
+                        'Ind AS 10 – Events after Reporting Period',
+                        'Ind AS 7 – Statement of Cash Flows',
+                        'Ind AS 33 – Earnings per Share',
+                        'Ind AS 24 – Related Party Disclosures',
+                        'Ind AS 108 – Operating Segments',
+                        'Ind AS 105 – Discontinued Operations',
+                        'Ind AS 34 – Interim Financial Reporting'
+                    ]
+                },
+                {
+                    id: 'industry',
+                    title: '7. Industry Specific',
+                    color: 'bg-teal-50 border-teal-300',
+                    headerColor: 'bg-teal-500',
+                    standards: [
+                        'Ind AS 106 – Exploration for Mineral Resources',
+                        'Ind AS 114 – Regulatory Deferral Accounts',
+                        'Ind AS 41 – Agriculture',
+                        'Ind AS 117 – Insurance Contracts'
+                    ]
+                }
+            ];
+
+            return (
+                <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-8">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="bg-white rounded-lg shadow-lg p-6 mb-8 border-t-4 border-blue-600">
+                            <h1 className="text-3xl font-bold text-gray-800 text-center mb-2">
+                                Indian Accounting Standards (Ind AS)
+                            </h1>
+                            <p className="text-center text-gray-600">Hierarchical Organization Chart</p>
+                        </div>
+
+                        <div className="space-y-6">
+                            {categories.map((category) => (
+                                <div key={category.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+                                    <button
+                                        onClick={() => toggleCategory(category.id)}
+                                        className={`w-full ${category.headerColor} text-white p-4 flex items-center justify-between hover:opacity-90 transition-opacity`}
+                                    >
+                                        <h2 className="text-lg font-semibold">{category.title}</h2>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-sm bg-white bg-opacity-20 px-3 py-1 rounded-full">
+                                                {category.standards.length} standards
+                                            </span>
+                                            {expandedCategories[category.id] ? <ChevronDown /> : <ChevronRight />}
+                                        </div>
+                                    </button>
+
+                                    {expandedCategories[category.id] && (
+                                        <div className={`${category.color} border-2 border-t-0 p-4`}>
+                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                                {category.standards.map((standard, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className="bg-white rounded-md p-3 shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
+                                                    >
+                                                        <p className="text-sm text-gray-700 font-medium">{standard}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="mt-8 text-center text-gray-600 text-sm">
+                            <p>Click on each category to expand or collapse standards</p>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<IndASChart />, document.getElementById('root'));
+    </script>
+</body>
+</html>
